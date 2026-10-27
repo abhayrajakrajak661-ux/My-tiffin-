@@ -54,7 +54,7 @@ main{padding:18px 14px 38px}.card{background:white;border:1px solid var(--line);
 </main>
 <script>
 // IMPORTANT: Replace this with your WhatsApp number including India country code, without + or spaces.
-const WHATSAPP_NUMBER = "916264459067
+const WHATSAPP_NUMBER = "917509868667
 const DAILY_PRICE = 80; // Change to your actual per-tiffin daily price (₹)
 const MONTH_DAYS = 30;
 let plan = 'daily';
@@ -69,8 +69,7 @@ function sendOrder(){
  if(WHATSAPP_NUMBER.includes('X')){alert('ऐप के मालिक का WhatsApp नंबर अभी सेट नहीं है। index.html में WHATSAPP_NUMBER बदलें।');return;}
  const duration=plan==='daily'?'1 दिन':'30 दिन';const total=DAILY_PRICE*(plan==='daily'?1:MONTH_DAYS)*qty;
  const message=`*My Tiffin - नया ऑर्डर*%0A%0A*नाम:* ${encodeURIComponent(name)}%0A*ग्राहक मोबाइल:* ${encodeURIComponent(phone)}%0A*पता:* ${encodeURIComponent(address)}%0A*प्लान:* ${encodeURIComponent(plan==='daily'?'रोज़ाना':'मासिक')}%0A*टिफिन संख्या:* ${qty}%0A*अवधि:* ${encodeURIComponent(duration)}%0A*डिलीवरी:* ${encodeURIComponent(document.getElementById('time').value)}%0A*शुरू करने की तारीख:* ${encodeURIComponent(document.getElementById('startDate').value||'अभी तय नहीं')}%0A*अनुमानित राशि:* ₹${total}%0A*निर्देश:* ${encodeURIComponent(document.getElementById('notes').value.trim()||'कोई नहीं')}`;
- window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}`;
-}
+window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}`;
 const dateInput=document.getElementById('startDate');const now=new Date();dateInput.min=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);choosePlan('daily');
 </script>
 </body>
