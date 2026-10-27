@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#176b45" />
+<meta name="description" content="My Tiffin - रोज़ाना और मासिक घर जैसा टिफिन ऑर्डर करें।" />
+<title>My Tiffin | घर जैसा खाना</title>
+<style>
+:root{--green:#176b45;--green2:#e8f5ed;--ink:#18231d;--muted:#66736b;--line:#e2e9e4;--white:#fff;--orange:#f5a623}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif;background:#f6f8f6;color:var(--ink)}
+header{background:linear-gradient(135deg,#125638,#258353);color:white;padding:25px 18px 30px;border-radius:0 0 26px 26px}
+.wrap{max-width:720px;margin:auto}.brand{display:flex;align-items:center;gap:11px}.logo{height:48px;width:48px;border-radius:16px;background:#fff;color:var(--green);display:grid;place-items:center;font-size:26px}.brand h1{font-size:23px;margin:0}.brand p{margin:2px 0 0;font-size:13px;opacity:.88}.hero h2{font-size:27px;line-height:1.25;margin:25px 0 8px}.hero p{margin:0;line-height:1.55;opacity:.92}.pill{display:inline-block;margin-top:14px;background:#ffffff20;border:1px solid #ffffff55;padding:7px 11px;border-radius:99px;font-size:12px}
+main{padding:18px 14px 38px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 5px 18px #163d2510}.section-title{font-size:18px;margin:0 0 13px}.plans{display:grid;grid-template-columns:1fr 1fr;gap:10px}.plan{border:1.5px solid var(--line);border-radius:15px;padding:14px 12px;cursor:pointer;background:#fff;text-align:left;color:var(--ink)}.plan.active{border-color:var(--green);background:var(--green2);box-shadow:inset 0 0 0 1px var(--green)}.plan .emoji{font-size:25px}.plan strong{display:block;margin:5px 0}.plan small{color:var(--muted);line-height:1.4}.field{display:block;margin:12px 0 5px;font-weight:650;font-size:14px}input,textarea,select{width:100%;padding:12px 13px;border:1px solid #d7e0d9;border-radius:11px;font:inherit;font-size:15px;background:#fff;color:var(--ink)}textarea{min-height:78px;resize:vertical}.hint{font-size:12px;color:var(--muted);margin-top:5px}.price-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);gap:12px}.price-row:last-child{border-bottom:0}.price{font-weight:750;color:var(--green)}.qty{display:flex;align-items:center;gap:9px}.qty button{width:32px;height:32px;border:1px solid var(--line);background:white;border-radius:9px;font-size:20px;color:var(--green);cursor:pointer}.qty span{min-width:16px;text-align:center;font-weight:700}.total{font-size:20px;font-weight:800;color:var(--green)}.btn{border:0;border-radius:13px;padding:14px 16px;width:100%;font:inherit;font-weight:750;cursor:pointer}.btn-wa{background:#18864b;color:white;font-size:16px}.btn-wa:active{transform:scale(.99)}.fine{font-size:12px;color:var(--muted);line-height:1.5;margin-top:11px}.notice{background:#fff8e7;border:1px solid #f4dfaa;padding:12px;border-radius:12px;font-size:13px;line-height:1.5}.footer{text-align:center;color:var(--muted);font-size:12px;padding:8px 0 18px}.required{color:#bd3b2b}.hide{display:none!important}
+@media(min-width:600px){header{padding:30px 24px 35px}main{padding:22px 20px 40px}.hero h2{font-size:32px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand"><div class="logo">🍱</div><div><h1>My Tiffin</h1><p>हर दिन घर जैसा खाना</p></div></div>
+  <div class="hero"><h2>स्वादिष्ट खाना,<br>आपके दरवाज़े तक</h2><p>अपना टिफिन चुनें और WhatsApp पर ऑर्डर भेजें।</p><span class="pill">✓ रोज़ाना और मासिक प्लान उपलब्ध</span></div>
+</div></header>
+<main class="wrap">
+  <section class="card"><h3 class="section-title">🍽️ अपना टिफिन प्लान चुनें</h3>
+    <div class="plans">
+      <button type="button" class="plan active" data-plan="daily" onclick="choosePlan('daily')"><span class="emoji">🥗</span><strong>रोज़ाना टिफिन</strong><small>एक दिन के लिए ऑर्डर</small></button>
+      <button type="button" class="plan" data-plan="monthly" onclick="choosePlan('monthly')"><span class="emoji">📅</span><strong>मासिक टिफिन</strong><small>महीने भर का प्लान</small></button>
+    </div>
+    <div class="field">टिफिन की संख्या</div><div class="qty"><button type="button" onclick="changeQty(-1)" aria-label="कम करें">−</button><span id="qty">1</span><button type="button" onclick="changeQty(1)" aria-label="बढ़ाएँ">+</button></div>
+  </section>
+  <section class="card"><h3 class="section-title">🥘 मेन्यू और कीमत</h3>
+    <div class="price-row"><div><strong>साधारण वेज टिफिन</strong><div class="hint">रोटी, सब्ज़ी, दाल, चावल</div></div><div class="price" id="unitPrice">₹80 / दिन</div></div>
+    <div class="price-row"><div><strong>सलाद</strong><div class="hint">मेन्यू के साथ</div></div><div class="hint">शामिल</div></div>
+    <div class="notice" style="margin-top:13px">कीमत उदाहरण के लिए रखी गई है। अपने वास्तविक रेट के अनुसार कोड में ₹80 बदल सकते हैं। मासिक प्लान की गणना 30 दिनों के आधार पर होगी।</div>
+  </section>
+  <section class="card"><h3 class="section-title">🧾 ग्राहक की जानकारी</h3>
+    <label class="field" for="name">आपका नाम <span class="required">*</span></label><input id="name" autocomplete="name" placeholder="पूरा नाम" required />
+    <label class="field" for="phone">मोबाइल नंबर <span class="required">*</span></label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" placeholder="10 अंकों का नंबर" required />
+    <label class="field" for="address">डिलीवरी का पूरा पता <span class="required">*</span></label><textarea id="address" autocomplete="street-address" placeholder="मकान नंबर, मोहल्ला, शहर" required></textarea>
+    <div id="dateWrap"><label class="field" for="startDate">टिफिन शुरू करने की तारीख</label><input id="startDate" type="date" /></div>
+    <label class="field" for="time">डिलीवरी का समय</label><select id="time"><option>दोपहर</option><option>रात</option><option>दोपहर और रात</option></select>
+    <label class="field" for="notes">खास निर्देश (वैकल्पिक)</label><textarea id="notes" placeholder="जैसे कम मिर्च, बिना प्याज़ आदि"></textarea>
+  </section>
+  <section class="card"><h3 class="section-title">💰 ऑर्डर का हिसाब</h3>
+    <div class="price-row"><span>प्लान</span><strong id="summaryPlan">रोज़ाना</strong></div>
+    <div class="price-row"><span>टिफिन</span><strong id="summaryQty">1</strong></div>
+    <div class="price-row"><span>अवधि</span><strong id="summaryDuration">1 दिन</strong></div>
+    <div class="price-row"><span>कुल अनुमानित राशि</span><span class="total" id="total">₹80</span></div>
+    <p class="fine">यह अनुमान है। ऑर्डर भेजने के बाद दुकान से उपलब्धता, डिलीवरी और अंतिम कीमत की पुष्टि करें।</p>
+    <button type="button" class="btn btn-wa" onclick="sendOrder()">🟢 WhatsApp पर ऑर्डर भेजें</button>
+    <p class="fine">पहली बार प्रकाशित करने से पहले नीचे दिए कोड में अपना WhatsApp नंबर डालना ज़रूरी है। नंबर देश कोड सहित लिखें, जैसे भारत के लिए 91XXXXXXXXXX — + या खाली जगह के बिना।</p>
+  </section>
+  <div class="footer">My Tiffin · घर जैसा खाना, आसान ऑर्डर</div>
+</main>
+<script>
+// IMPORTANT: Replace this with your WhatsApp number including India country code, without + or spaces.
+const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+const DAILY_PRICE = 80; // Change to your actual per-tiffin daily price (₹)
+const MONTH_DAYS = 30;
+let plan = 'daily';
+let qty = 1;
+function choosePlan(p){plan=p;document.querySelectorAll('.plan').forEach(b=>b.classList.toggle('active',b.dataset.plan===p));document.getElementById('summaryPlan').textContent=p==='daily'?'रोज़ाना':'मासिक';document.getElementById('unitPrice').textContent=p==='daily'?`₹${DAILY_PRICE} / दिन`:`₹${DAILY_PRICE*MONTH_DAYS} / महीना`;document.getElementById('summaryDuration').textContent=p==='daily'?'1 दिन':`${MONTH_DAYS} दिन`;updateTotal();}
+function changeQty(n){qty=Math.max(1,Math.min(20,qty+n));document.getElementById('qty').textContent=qty;document.getElementById('summaryQty').textContent=qty;updateTotal();}
+function updateTotal(){const total=DAILY_PRICE*(plan==='daily'?1:MONTH_DAYS)*qty;document.getElementById('total').textContent='₹'+total.toLocaleString('en-IN');}
+function sendOrder(){
+ const name=document.getElementById('name').value.trim();const phone=document.getElementById('phone').value.trim();const address=document.getElementById('address').value.trim();
+ if(!name||!phone||!address){alert('कृपया नाम, मोबाइल नंबर और पूरा पता भरें।');return;}
+ if(!/^[6-9]\d{9}$/.test(phone)){alert('कृपया सही 10 अंकों का भारतीय मोबाइल नंबर भरें।');return;}
+ if(WHATSAPP_NUMBER.includes('X')){alert('ऐप के मालिक का WhatsApp नंबर अभी सेट नहीं है। index.html में WHATSAPP_NUMBER बदलें।');return;}
+ const duration=plan==='daily'?'1 दिन':'30 दिन';const total=DAILY_PRICE*(plan==='daily'?1:MONTH_DAYS)*qty;
+ const message=`*My Tiffin - नया ऑर्डर*%0A%0A*नाम:* ${encodeURIComponent(name)}%0A*ग्राहक मोबाइल:* ${encodeURIComponent(phone)}%0A*पता:* ${encodeURIComponent(address)}%0A*प्लान:* ${encodeURIComponent(plan==='daily'?'रोज़ाना':'मासिक')}%0A*टिफिन संख्या:* ${qty}%0A*अवधि:* ${encodeURIComponent(duration)}%0A*डिलीवरी:* ${encodeURIComponent(document.getElementById('time').value)}%0A*शुरू करने की तारीख:* ${encodeURIComponent(document.getElementById('startDate').value||'अभी तय नहीं')}%0A*अनुमानित राशि:* ₹${total}%0A*निर्देश:* ${encodeURIComponent(document.getElementById('notes').value.trim()||'कोई नहीं')}`;
+ window.location.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+}
+const dateInput=document.getElementById('startDate');const now=new Date();dateInput.min=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);choosePlan('daily');
+</script>
+</body>
+</html>
